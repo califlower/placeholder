@@ -39,6 +39,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"sk-auth": "^0.4.1"
+		"@auth/core": "^0.1.4",
+		"@auth/sveltekit": "^0.1.6"
 	}
 }
