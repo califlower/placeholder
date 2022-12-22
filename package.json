@@ -41,6 +41,7 @@
 	"type": "module",
 	"dependencies": {
 		"@auth/core": "^0.1.4",
-		"@auth/sveltekit": "^0.1.6"
+		"@auth/sveltekit": "^0.1.6",
+		"daisyui": "^2.46.0"
 	}
 }
