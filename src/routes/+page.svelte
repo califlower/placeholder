@@ -17,11 +17,11 @@
 			</div>
 			<div class="h-12" />
 			<div class="flex items-center justify-center">
-				<button class="glass btn">Connect your current card</button>
+				<button class="btn">Connect your current card</button>
 			</div>
 			<div class="h-4" />
 			<div class="flex flex-col items-center justify-center space-y-3">
-				<p class="text-slate-200">Or view an estimate using your zip code!</p>
+				<p class="prose-slate">Or view an estimate using your zip code!</p>
 				<input
 					type="text"
 					placeholder="Zipcode"
