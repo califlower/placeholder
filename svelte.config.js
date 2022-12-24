@@ -9,7 +9,14 @@ const config = {
 	preprocess: [vitePreprocess(), preprocess({ postcss: true })],
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter(),
+
+				alias: {
+                    // these are the aliases and paths to them
+					'$components/*': './src/lib/components',
+					'$src/*': './src',
+					'$utils/*': './src/lib/utils'
+				}
 	}
 };
 
