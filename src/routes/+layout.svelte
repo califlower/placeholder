@@ -72,7 +72,7 @@
 						<div tabindex="-1" class="btn-ghost btn flex space-x-2">
 							<div class="flex flex-col">
 								<small>Signed in as</small>
-								<strong>{$page.data.session.user?.email ?? $page.data.session.user?.name}</strong>
+								<small>{$page.data.session.user?.email ?? $page.data.session.user?.name}</small>
 							</div>
 							<div>
 								<strong>▼</strong>

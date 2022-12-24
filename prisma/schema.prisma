@@ -43,6 +43,7 @@ model UserTransaction {
   transactionDate DateTime
   amount          Int
   category        String
+  merchant        String
   userId          String
   user            User     @relation(fields: [userId], references: [id])
 }

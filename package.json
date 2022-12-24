@@ -47,6 +47,7 @@
 		"@next-auth/prisma-adapter": "^1.0.5",
 		"@prisma/client": "^4.8.0",
 		"daisyui": "^2.46.0",
-		"next-auth": "^4.18.7"
+		"next-auth": "^4.18.7",
+		"svelte-tiny-virtual-list": "^2.0.5"
 	}
 }
