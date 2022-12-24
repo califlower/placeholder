@@ -1,6 +1,8 @@
 <script>
 	import '../app.postcss';
 	import { page } from '$app/stores';
+
+	let sidebar_open = false;
 </script>
 
 <div class="flex h-screen flex-col">
@@ -46,7 +48,7 @@
 				</button>
 				<a href="/">
 					<div class="align-center flex items-center space-x-2 ">
-						<img class="h-12 w-12 md:h-16 md:w-16" src="logo.png" alt="pointlift company logo" />
+						<img class="h-12 w-12 md:h-16 md:w-16" src="/logo.png" alt="pointlift company logo" />
 						<h1 class=" text-xl font-bold leading-tight text-gray-900 md:text-2xl">Pointlift</h1>
 					</div>
 				</a>
@@ -63,18 +65,30 @@
 				>
 				<a href="/about" class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">About</a>
 			</nav>
+
 			<nav class="flex items-center space-x-1 text-sm font-medium text-gray-800">
 				{#if $page.data.session}
-					<span>
-						<small>Signed in as</small><br />
-						<strong>{$page.data.session.user?.email ?? $page.data.session.user?.name}</strong>
-					</span>
-					<a
-						data-sveltekit-preload-data="off"
-						href="/auth/signout"
-						class="hidden rounded bg-white px-3 py-2 transition hover:bg-gray-100 sm:inline"
-						>Sign out</a
-					>
+					<div class="dropdown-end dropdown">
+						<div tabindex="-1" class="btn-ghost btn flex space-x-2">
+							<div class="flex flex-col">
+								<small>Signed in as</small>
+								<strong>{$page.data.session.user?.email ?? $page.data.session.user?.name}</strong>
+							</div>
+							<div>
+								<strong>▼</strong>
+							</div>
+						</div>
+						<ul
+							tabindex="-1"
+							class="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+						>
+							<li>
+								<a href="/user/profile" class="justify-between"> Profile </a>
+							</li>
+							<li><a href="/user/settings">Settings</a></li>
+							<li><a href="/auth/signout?callbackUrl=//">Logout</a></li>
+						</ul>
+					</div>
 				{:else}
 					<a
 						href="/auth/signin"
@@ -131,8 +145,8 @@
 			>
 				<p>© 2022, Pointlift. All Rights Reserved.</p>
 				<p>
-					<a href="#" class="hover:underline">Privacy</a> ·
-					<a href="#" class="hover:underline">Terms</a>
+					<a href="/privacy" class="hover:underline">Privacy</a> ·
+					<a href="/terms" class="hover:underline">Terms</a>
 				</p>
 			</nav>
 		</div>

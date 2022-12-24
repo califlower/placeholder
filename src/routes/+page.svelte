@@ -2,7 +2,7 @@
 	<div class="m-6 flex h-full flex-col items-center justify-center">
 		<div class="prose mx-auto">
 			<h1
-				class=" mb-3 inline text-4xl font-bold text-slate-200 md:text-5xl md:font-extrabold md:leading-tight"
+				class="mb-3 inline text-4xl font-bold text-slate-200 md:text-5xl md:font-extrabold md:leading-tight"
 			>
 				Discover the best card for you on
 				<p class="inline text-blue-100 underline">pointlift.ai</p>

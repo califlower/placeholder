@@ -1,3 +1,9 @@
 {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.defaultFormatter": "svelte.svelte-vscode",
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }
