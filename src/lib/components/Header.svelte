@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { page } from '$app/stores';
 </script>
 
@@ -50,14 +50,26 @@
 			</a>
 		</div>
 		<nav class="hidden items-center space-x-2 text-sm font-medium text-gray-800 md:flex">
-			<a href="/dashboard" class="rounded bg-white px-3 py-2 transition hover:bg-gray-100"
-				>Dashboard</a
+			<a
+				href="/dashboard/stats"
+				class:underline={$page.url.pathname.includes('/dashboard')}
+				class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">Dashboard</a
 			>
-			<a href="/how-it-works" class="rounded bg-white px-3 py-2 transition hover:bg-gray-100"
-				>How It Works</a
+			<a
+				href="/how-it-works"
+				class:underline={$page.url.pathname.includes('/how-it-works')}
+				class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">How It Works</a
 			>
-			<a href="/contact" class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">Contact</a>
-			<a href="/about" class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">About</a>
+			<a
+				href="/contact"
+				class:underline={$page.url.pathname.includes('/contact')}
+				class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">Contact</a
+			>
+			<a
+				href="/about"
+				class:underline={$page.url.pathname.includes('/about')}
+				class="rounded bg-white px-3 py-2 transition hover:bg-gray-100">About</a
+			>
 		</nav>
 
 		<nav class="flex items-center space-x-1 text-sm font-medium text-gray-800">

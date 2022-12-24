@@ -4,8 +4,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 @layer utilities {
     .homepage-gradient {
-        background: linear-gradient(354deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 41%, rgba(99,102,241,1) 44%, rgba(168,85,247,1) 73%, rgba(236,72,153,1) 100%);
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 10s ease infinite;
     }
 }
+

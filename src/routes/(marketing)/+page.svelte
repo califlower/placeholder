@@ -17,7 +17,7 @@
 			</div>
 			<div class="h-12" />
 			<div class="flex items-center justify-center">
-				<button class="btn">Connect your current card</button>
+				<button class="btn rounded-2xl">Connect your current card</button>
 			</div>
 			<div class="h-4" />
 			<div class="flex flex-col items-center justify-center space-y-3">
