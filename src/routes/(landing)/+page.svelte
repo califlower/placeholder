@@ -1,4 +1,9 @@
+<script>
+	import Header from '$components/Header.svelte';
+</script>
+
 <div class="homepage-gradient flex flex-1 flex-col">
+	<Header />
 	<div class="m-6 flex h-full flex-col items-center justify-center">
 		<div class="prose mx-auto">
 			<h1
@@ -17,7 +22,7 @@
 			</div>
 			<div class="h-12" />
 			<div class="flex items-center justify-center">
-				<button class="btn rounded-2xl">Connect your current card</button>
+				<button class="btn rounded-2xl bg-slate-800">Connect your current card</button>
 			</div>
 			<div class="h-4" />
 			<div class="flex flex-col items-center justify-center space-y-3">
