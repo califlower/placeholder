@@ -19,8 +19,9 @@
 	<div class="mx-auto flex max-w-7xl items-center justify-between p-4">
 		<div class="flex items-center">
 			<div class="dropdown dropdown-right">
-				<button
-					class="flex appearance-none p-1 {$page.url.pathname === '/'
+				<div
+					tabindex="-1"
+					class="btn-ghost btn flex space-x-2  {$page.url.pathname === '/'
 						? 'text-white'
 						: 'text-slate-700'} md:hidden"
 				>
@@ -59,18 +60,45 @@
 							stroke-width="24"
 						/>
 					</svg>
-					<ul
-						tabindex="-1"
-						class="dropdown-content menu rounded-box absolute mt-3 w-52 bg-base-100 p-2 text-slate-900 shadow-lg"
-					>
-						<li>
-							<a href="/dashboard/stats" class="justify-between"> Dashboard </a>
-						</li>
-						<li><a href="/how-it-works">How It Works</a></li>
-						<li><a href="/contact">Contact</a></li>
-						<li><a href="/about">About</a></li>
-					</ul>
-				</button>
+				</div>
+				<ul
+					tabindex="-1"
+					class="dropdown-content menu rounded-box absolute mt-3 w-72 bg-base-100 p-2 text-slate-900 shadow-lg"
+				>
+					<li><a href="/" class="text-xl font-bold leading-tight">Pointlift</a></li>
+					<li>
+						<a class="flex flex-row" href="/dashboard/stats">
+							<p>Dashboard</p>
+							<div class="flex w-full flex-1 justify-end">
+								<p>›</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="/how-it-works" class="flex flex-row">
+							<p>How It Works</p>
+							<div class="flex flex-1 justify-end">
+								<p>›</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="/contact" class="flex flex-row">
+							<p>Contact</p>
+							<div class="flex flex-1 justify-end">
+								<p>›</p>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href="/about" class="flex flex-row">
+							<p>About</p>
+							<div class="flex flex-1 justify-end">
+								<p>›</p>
+							</div>
+						</a>
+					</li>
+				</ul>
 			</div>
 			<a href="/">
 				<div class="align-center flex items-center space-x-2 ">
