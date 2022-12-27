@@ -18,7 +18,7 @@
 					<div class="h-4" />
 					<div class="prose mx-auto">
 						<p class="mb-6 text-lg text-slate-200 md:text-xl md:leading-normal">
-							Compare potential card card rewards from across the market using personalized
+							Compare potential credit card rewards from across the market using personalized
 							transaction data
 						</p>
 					</div>
