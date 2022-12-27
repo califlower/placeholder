@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import NoCards from '$components/Dashboard/NoCards.svelte';
+	import { PlaidApi } from 'plaid';
 
 	import type { PageData } from '../$types';
 	export let data: PageData;
@@ -43,9 +44,7 @@
 </script>
 
 {#if browser}
-	<script
-		src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
-		on:load={initPlaid}
-	></script>
+	<script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js" on:load={initPlaid}>
+	</script>
 {/if}
 <NoCards {handler} />

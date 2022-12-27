@@ -38,6 +38,13 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model PlaidSession {
+  id           String @id @default(cuid())
+  sessionToken String @unique
+  userId       String
+  User         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
 model UserTransaction {
   id              String   @id @default(cuid())
   transactionDate DateTime
@@ -45,7 +52,7 @@ model UserTransaction {
   category        String
   merchant        String
   userId          String
-  user            User     @relation(fields: [userId], references: [id])
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
@@ -57,6 +64,7 @@ model User {
   accounts        Account[]
   sessions        Session[]
   UserTransaction UserTransaction[]
+  plaidSessions   PlaidSession[]
 }
 
 model VerificationToken {
