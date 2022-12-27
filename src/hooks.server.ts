@@ -1,13 +1,13 @@
 // src/hooks.server.ts
 
-import SvelteKitAuth from '@auth/sveltekit';
+import SvelteKitAuth, { type SvelteKitAuthOptions } from '@auth/sveltekit';
 import GitHub from '@auth/core/providers/github';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private';
 import prisma from './lib/server/prismadb';
 import type { Adapter } from '@auth/core/adapters';
 
-export const handle = SvelteKitAuth({
+export const authOptions: SvelteKitAuthOptions = {
 	adapter: PrismaAdapter(prisma) as Adapter<boolean>,
 	providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })],
 	theme: {
@@ -35,5 +35,15 @@ export const handle = SvelteKitAuth({
 		generateSessionToken: () => {
 			return crypto.randomUUID();
 		}
+	},
+	callbacks: {
+		session: async ({ session, user }) => {
+			if (session?.user) {
+				session.user.id = user.id;
+			}
+			return session;
+		}
 	}
-});
+};
+
+export const handle = SvelteKitAuth(authOptions);

@@ -2,6 +2,8 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { Configuration, CountryCode, PlaidApi, PlaidEnvironments, Products } from 'plaid';
 import { PLAID_ENV, PLAID_CLIENT_ID, PLAID_SECRET } from '$env/static/private';
+import { authOptions } from '$src/hooks.server';
+import { getSession } from '@auth/sveltekit';
 
 const config = new Configuration({
 	basePath: PlaidEnvironments[PLAID_ENV],
@@ -15,10 +17,13 @@ const config = new Configuration({
 });
 const client = new PlaidApi(config);
 
-export const GET = (async () => {
+export const GET = (async ({ request }) => {
+	const sessionResult = await getSession(request, authOptions);
+	console.log(sessionResult);
+
 	const tokenResponse = await client.linkTokenCreate({
 		user: { client_user_id: '123' },
-		client_name: "Plaid's Tiny Quickstart",
+		client_name: 'Pointlift',
 		language: 'en',
 		products: [Products.Auth],
 		country_codes: [CountryCode.Us],
