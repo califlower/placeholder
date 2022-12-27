@@ -19,14 +19,22 @@ const client = new PlaidApi(config);
 
 export const POST = (async ({ request }) => {
 	const data = await request.json();
+	console.log('hello');
 	const exchangeResponse = await client.itemPublicTokenExchange({
 		public_token: data.public_token
 	});
 
 	const sessionResult = await getSession(request, authOptions);
 
-	console.log('yeet');
-	console.log(sessionResult?.user);
+	if (sessionResult && sessionResult.user) {
+		await prisma.plaidSession.create({
+			data: {
+				userId: sessionResult.user.id,
+				sessionToken: exchangeResponse.data.access_token
+			}
+		});
+	}
+
 	// FOR DEMO PURPOSES ONLY
 	// Store access_token in DB instead of session storage
 	//req.session.access_token = exchangeResponse.data.access_token;

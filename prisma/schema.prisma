@@ -41,6 +41,7 @@ model Session {
 model PlaidSession {
   id           String @id @default(cuid())
   sessionToken String @unique
+  // todo: make unique?
   userId       String
   User         User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
