@@ -1,5 +1,6 @@
 <script>
 	import Header from '$components/Header.svelte';
+	import { PageURLs } from '$src/lib/Constants';
 </script>
 
 <div class="homepage-gradient flex flex-1 flex-col">
@@ -28,8 +29,13 @@
 			</div>
 			<div class="h-12" />
 			<div class="flex flex-row items-center justify-center space-x-6">
-				<button class="btn rounded-2xl bg-slate-800 text-xs">Connect your card →</button>
-				<button class="text-white transition hover:underline hover:opacity-60">View Demo</button>
+				<a href={PageURLs.DashboardBank} class="btn rounded-2xl bg-slate-800 text-xs"
+					>Connect your bank →</a
+				>
+				<a
+					href={PageURLs.DashboardRewards}
+					class="text-white transition hover:underline hover:opacity-60">View Demo</a
+				>
 			</div>
 		</div>
 	</div>

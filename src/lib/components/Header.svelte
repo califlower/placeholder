@@ -1,24 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	type Tab = {
-		displayName: string;
-		ref: string;
-		queryParam: string;
-	};
-
-	const tabs: Tab[] = [
-		{ displayName: 'Stats', ref: '/dashboard/stats', queryParam: 'stats' },
-		{ displayName: 'Transactions', ref: '/dashboard/transactions', queryParam: 'transactions' },
-		{ displayName: 'Cards', ref: '/dashboard/cards', queryParam: 'transaction' }
-	];
-
-	const sideBar: boolean = false;
+	import { PageURLs } from '../Constants';
 </script>
 
 <header>
 	<div class="mx-auto flex max-w-7xl items-center justify-between p-4">
 		<div class="flex items-center">
-			<div class="dropdown dropdown-right">
+			<div class="dropdown-right dropdown">
 				<div
 					tabindex="-1"
 					class="btn-ghost btn flex space-x-2  {$page.url.pathname === '/'
@@ -67,7 +55,7 @@
 				>
 					<li><a href="/" class="text-xl font-bold leading-tight">Pointlift</a></li>
 					<li>
-						<a class="flex flex-row" href="/dashboard/stats">
+						<a class="flex flex-row" href={PageURLs.DashboardRewards}>
 							<p>Dashboard</p>
 							<div class="flex w-full flex-1 justify-end">
 								<p>›</p>
@@ -120,7 +108,7 @@
 			class:text-white={$page.url.pathname === '/'}
 		>
 			<a
-				href="/dashboard/stats"
+				href={PageURLs.DashboardRewards}
 				class:underline={$page.url.pathname.includes('/dashboard')}
 				class="rounded  py-2  transition hover:underline hover:opacity-60">Dashboard</a
 			>
@@ -146,7 +134,7 @@
 				: 'text-slate-800'}"
 		>
 			{#if $page.data.session}
-				<div class="dropdown-end dropdown">
+				<div class="dropdown dropdown-end">
 					<div tabindex="-1" class="btn-ghost btn flex space-x-2">
 						<div class="flex flex-col">
 							<small>Signed in as</small>
