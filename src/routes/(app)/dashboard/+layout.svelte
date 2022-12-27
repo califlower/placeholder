@@ -17,9 +17,9 @@
 	const currentTab: string = $page.url.searchParams.get(tabQuery) || tabs[0].queryParam;
 </script>
 
-<div>
+<div class="flex h-screen flex-col">
 	<Header />
-	<div class="flex h-screen">
+	<div class="flex flex-1">
 		<div class="drawer-side hidden shadow md:inline">
 			<label for="my-drawer" class="drawer-overlay" />
 			<ul class="menu w-56 bg-base-100 p-4 text-base-content">
