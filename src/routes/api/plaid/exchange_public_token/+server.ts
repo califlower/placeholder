@@ -15,14 +15,14 @@ const config = new Configuration({
 });
 const client = new PlaidApi(config);
 
-export const GET = (async () => {
-	const tokenResponse = await client.linkTokenCreate({
-		user: { client_user_id: '123' },
-		client_name: "Plaid's Tiny Quickstart",
-		language: 'en',
-		products: [Products.Auth],
-		country_codes: [CountryCode.Us],
-		redirect_uri: process.env.PLAID_SANDBOX_REDIRECT_URI
+export const POST = (async ({ request }) => {
+	const data = await request.json();
+	const exchangeResponse = await client.itemPublicTokenExchange({
+		public_token: data.public_token
 	});
-	return json(tokenResponse.data);
+
+	// FOR DEMO PURPOSES ONLY
+	// Store access_token in DB instead of session storage
+	//req.session.access_token = exchangeResponse.data.access_token;
+	return json(true);
 }) satisfies RequestHandler;

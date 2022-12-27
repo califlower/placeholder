@@ -1,6 +1,11 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
+
 	import type { PageData } from './$types';
 	export let data: PageData;
+
+	let handler: any;
+
 	async function initPlaid() {
 		// Grab a Link token to initialize Link
 		const createLinkToken = async () => {
@@ -13,10 +18,10 @@
 
 		// Initialize Link
 		// @ts-ignore
-		const handler = Plaid.create({
+		handler = Plaid.create({
 			token: await createLinkToken(),
 			onSuccess: async (publicToken: string, metadata: string) => {
-				await fetch('/api/exchange_public_token', {
+				await fetch('/api/plaid/exchange_public_token', {
 					method: 'POST',
 					body: JSON.stringify({ public_token: publicToken }),
 					headers: {
@@ -33,22 +38,15 @@
 				console.log(error, metadata);
 			}
 		});
-
-		// Start Link when button is clicked
-		const linkAccountButton = document.getElementById('link-account');
-		linkAccountButton?.addEventListener('click', (event) => {
-			console.log('yeet');
-			handler.open();
-		});
 	}
 </script>
 
-<svelte:head>
+{#if browser}
 	<script
 		src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"
 		on:load={initPlaid}
 	></script>
-</svelte:head>
+{/if}
 <div class="flex flex-1 items-center justify-center    ">
 	<div>
 		<div class="mb-24 text-center">
@@ -68,7 +66,7 @@
 			</div>
 			<div class="h-12" />
 
-			<button id="link-account" class="btn">Connect Card</button>
+			<button on:click={() => handler.open()} class="btn">Connect Card</button>
 		</div>
 	</div>
 </div>
