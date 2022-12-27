@@ -6,7 +6,6 @@ import type { RequestHandler } from './$types';
 
 export const GET = (async ({ request }) => {
 	const sessionResult = await getSession(request, authOptions);
-
 	if (sessionResult && sessionResult.user) {
 		const result = await prisma.plaidSession.findFirst({
 			where: {
@@ -14,10 +13,13 @@ export const GET = (async ({ request }) => {
 			}
 		});
 
-		console.log(result);
 		if (result) {
 			const access_token = result.sessionToken;
-			const balanceResponse = await PlaidCleint.accountsBalanceGet({ access_token });
+			const balanceResponse = await PlaidCleint.transactionsGet({
+				access_token,
+				start_date: '2018-01-01',
+				end_date: '2020-02-01'
+			});
 			return json({
 				balance: balanceResponse.data
 			});
