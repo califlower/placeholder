@@ -1,10 +1,6 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import NoCards from '$components/Dashboard/NoCards.svelte';
-	import { PlaidApi } from 'plaid';
-
-	import type { PageData } from '../$types';
-	export let data: PageData;
 
 	let handler: any;
 
@@ -30,7 +26,6 @@
 						'Content-Type': 'application/json'
 					}
 				});
-				console.log(data.balance);
 			},
 			onEvent: (eventName: string, metadata: string) => {
 				console.log('Event:', eventName);

@@ -17,8 +17,8 @@ export const GET = (async ({ request }) => {
 			const access_token = result.sessionToken;
 			const balanceResponse = await PlaidCleint.transactionsGet({
 				access_token,
-				start_date: '2018-01-01',
-				end_date: '2020-02-01'
+				start_date: '2020-01-01',
+				end_date: '2022-02-01'
 			});
 			return json({
 				balance: balanceResponse.data
