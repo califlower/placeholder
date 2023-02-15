@@ -3,3 +3,5 @@ export const enum PageURLs {
 	DashboardRewards = '/dashboard/rewards',
 	DashboardCards = '/dashboard/cards'
 }
+
+export const DefaultGroup = 'Default';

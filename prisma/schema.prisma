@@ -10,9 +10,79 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// User using the app
+model User {
+  id             String          @id @default(cuid())
+  name           String          @default("")
+  phone          String          @unique
+  authToken      String          @unique
+  createdOn      DateTime        @default(now())
+  updatedOn      DateTime        @default(now())
+  defaultGroupId String          @unique
+  group          Group           @relation(fields: [defaultGroupId], references: [id])
+  usersOnGroups  UsersOnGroups[]
+}
+
+// Users as part of a group
+// they can be part of multiple
+model UsersOnGroups {
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id])
+  createdOn DateTime @default(now())
+  updatedOn DateTime @default(now())
+
+  @@id([userId, groupId])
+}
+
+model Invite {
+  isAccepted Boolean  @default(false)
+  event      Event    @relation(fields: [eventId], references: [id])
+  eventId    String
+  groupId    String
+  group      Group    @relation(fields: [groupId], references: [id])
+  createdOn  DateTime @default(now())
+  updatedOn  DateTime @default(now())
+
+  @@id([eventId, groupId])
+}
+
 model Event {
   id          String   @id @default(cuid())
   name        String
   description String
   date        DateTime
+  createdOn   DateTime @default(now())
+  updatedOn   DateTime @default(now())
+
+  invite             Invite[]
+  groupsHostingEvent GroupsHostingEvents[]
+}
+
+model GroupsHostingEvents {
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   String
+  groupId   String
+  group     Group    @relation(fields: [groupId], references: [id])
+  createdOn DateTime @default(now())
+  updatedOn DateTime @default(now())
+
+  @@id([eventId, groupId])
+}
+
+// a group that might host recurring parties and stuff
+// usually 1:1 with the host, but sometimes a 
+// a group might throw a party where they invite an 
+// additional one time person to host
+model Group {
+  id                 String                @id @default(cuid())
+  name               String
+  description        String
+  usersOnGroups      UsersOnGroups[]
+  invite             Invite[]
+  createdOn          DateTime              @default(now())
+  updatedOn          DateTime              @default(now())
+  groupsHostingEvent GroupsHostingEvents[]
+  user               User[]
 }
